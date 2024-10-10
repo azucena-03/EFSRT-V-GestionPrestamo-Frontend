@@ -1,0 +1,18 @@
+.mat-column-idCuenta{
+    flex: 0 0 10%;
+}
+.mat-column-numero{
+    flex: 0 0 25%;
+}
+.mat-column-tipofinan{
+    flex: 0 0 15%;
+}
+.mat-column-entidadFinancieraa{
+    flex: 0 0 20%;
+}
+.mat-column-tipoMonedaa{
+    flex: 0 0 20%;
+}
+.mat-column-estado{
+    flex: 0 0 10%;
+}

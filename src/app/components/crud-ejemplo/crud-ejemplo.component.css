@@ -1,0 +1,31 @@
+.mat-column-idEjemplo {
+    flex: 0 0 8%;
+}
+
+.mat-column-descripcion {
+    flex: 0 0 10%;
+}
+
+.mat-column-dias {
+    flex: 0 0 8%;
+}
+
+.mat-column-longitud {
+    flex: 0 0 8%;
+}
+
+.mat-column-pais {
+    flex: 0 0 10%;
+}
+
+.mat-column-ubigeo {
+    flex: 0 0 25%;
+}
+
+.mat-column-estado {
+    flex: 0 0 8%;
+}
+
+.mat-column-acciones {
+    flex: 0 0 15%;
+}

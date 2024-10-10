@@ -1,0 +1,23 @@
+.mat-column-idGrupo {
+    flex: 0 0 10%;
+}
+
+.mat-column-descripcion {
+    flex: 0 0 25%;
+}
+
+.mat-column-usuarioLider {
+    flex: 0 0 20%;
+}
+
+.mat-column-estado {
+    flex: 0 0 10%;
+}
+
+.mat-column-fechaRegistro {
+    flex: 0 0 20%;
+}
+
+.mat-column-fechaActualizacion {
+    flex: 0 0 20%;
+}

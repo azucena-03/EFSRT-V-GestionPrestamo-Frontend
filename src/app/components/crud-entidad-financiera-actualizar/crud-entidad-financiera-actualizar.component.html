@@ -1,0 +1,116 @@
+<div class="container">
+
+    <form [formGroup]="formRegistrar">
+        <div class="row">
+            <mat-toolbar color="primary">
+                <span>Actualizar Entidad Financiera</span>
+            </mat-toolbar>
+        </div>
+        <div class="row" style="margin-top: 3%">
+            <mat-form-field class="col-md-4">
+                <mat-label>Nombre</mat-label>
+                <input matInput [(ngModel)]="entidadFinanciera.nombre" formControlName="validaDescripcion">
+                <mat-hint style="color: red;" *ngIf="formRegistrar.controls.validaDescripcion.touched">
+                    <span *ngIf="formRegistrar.controls.validaDescripcion.hasError('required')">
+                        El Nombre es requerido
+                    </span>
+                    <span *ngIf="formRegistrar.controls.validaDescripcion.hasError('pattern')">
+                        El Nombre es de 3 a 30 caracteres
+                    </span>
+                    <span *ngIf="formRegistrar.controls.validaDescripcion.hasError('existeDescripcion')">
+                        El Nombre ya existe
+                    </span>
+                </mat-hint>
+            </mat-form-field>
+
+            <mat-form-field class="col-md-4" >
+                <mat-label>Gerente</mat-label>
+                <input matInput [(ngModel)]="entidadFinanciera.gerente" formControlName="validaGerente">
+                <mat-hint style="color: red;" *ngIf="formRegistrar.controls.validaDescripcion.touched">
+                    <span *ngIf="formRegistrar.controls.validaGerente.hasError('required')">
+                        El Nombre del gerente es requerido
+                    </span>
+                    <span *ngIf="formRegistrar.controls.validaGerente.hasError('pattern')">
+                        El Nombre es de 3 a 30 caracteres
+                    </span>
+                </mat-hint>
+            </mat-form-field>
+
+            <mat-form-field class="col-md-4">
+                <mat-label>Tipo Entidad</mat-label>
+                <mat-select [(ngModel)]="entidadFinanciera.tipoEntidad!.idDataCatalogo"
+                    formControlName="validaTipoEntidad">
+                    <mat-option value="-1"> [Seleccione] </mat-option>
+                    <mat-option *ngFor="let x of lstTipoEntidad" [value]="x.idDataCatalogo">
+                        {{x.descripcion}}
+                    </mat-option>
+                </mat-select>
+                <mat-hint style="color: red;" *ngIf="formRegistrar.controls.validaTipoEntidad.touched">
+                    <span *ngIf="formRegistrar.controls.validaTipoEntidad.hasError('min')">
+                        El tipo de entidad es requerido
+                    </span>
+                </mat-hint>
+            </mat-form-field>
+        </div>
+
+        <div class="row" style="margin-top: 3%">
+
+            <mat-form-field class="col-md-4">
+                <mat-label>Departamento</mat-label>
+                <mat-select [(ngModel)]="entidadFinanciera.ubigeo!.departamento" (selectionChange)="listaProvincia()"
+                    formControlName="validaDepartamento">
+                    <mat-option value="-1"> [Seleccione] </mat-option>
+                    <mat-option *ngFor="let x of departamentos" [value]="x">
+                        {{x}}
+                    </mat-option>
+                </mat-select>
+                <mat-hint style="color: red;" *ngIf="formRegistrar.controls.validaDepartamento.touched">
+                    <span *ngIf="formRegistrar.controls.validaDepartamento.hasError('min')">
+                        El departamento es requerido
+                    </span>
+                </mat-hint>
+            </mat-form-field>
+
+            <mat-form-field class="col-md-4">
+                <mat-label>Provincia</mat-label>
+                <mat-select [(ngModel)]="entidadFinanciera.ubigeo!.provincia" (selectionChange)="listaDistrito()"
+                    formControlName="validaProvincia">
+                    <mat-option value="-1"> [Seleccione] </mat-option>
+                    <mat-option *ngFor="let x of provincias" [value]="x">
+                        {{x}}
+                    </mat-option>
+                </mat-select>
+                <mat-hint style="color: red;" *ngIf="formRegistrar.controls.validaProvincia.touched">
+                    <span *ngIf="formRegistrar.controls.validaProvincia.hasError('min')">
+                        La provincia es requerido
+                    </span>
+                </mat-hint>
+            </mat-form-field>
+
+            <mat-form-field class="col-md-4">
+                <mat-label>Distrito</mat-label>
+                <mat-select [(ngModel)]="entidadFinanciera.ubigeo!.idUbigeo" formControlName="validaDistrito">
+                    <mat-option value="-1"> [Seleccione] </mat-option>
+                    <mat-option *ngFor="let x of distritos" [value]="x.idUbigeo">
+                        {{x.distrito}}
+                    </mat-option>
+                </mat-select>
+                <mat-hint style="color: red;" *ngIf="formRegistrar.controls.validaDistrito.touched">
+                    <span *ngIf="formRegistrar.controls.validaDistrito.hasError('min')">
+                        El distrito es requerido
+                    </span>
+                </mat-hint>
+            </mat-form-field>
+        </div>
+
+        <div class="row" style="margin-top: 3%; margin-left: auto; margin-right: auto; max-width: fit-content;">
+            <div mat-dialog-actions>
+                <button mat-raised-button type="submit" color="primary" [disabled]="formRegistrar.invalid"
+                    [mat-dialog-close]="1" (click)="actualiza()">Actualiza
+                </button>
+                <button mat-button type="submit" (click)="salir()" [mat-dialog-close]="2">Salir
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

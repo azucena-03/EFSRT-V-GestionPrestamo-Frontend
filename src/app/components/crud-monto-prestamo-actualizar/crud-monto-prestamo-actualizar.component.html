@@ -1,0 +1,60 @@
+<div class="container">
+    <form [formGroup]="formRegistrar">
+       <div class="mat-dialog-content">
+  
+        <div class="row">
+            <p>IEZIDPRADO!</p>
+            <mat-toolbar color="primary">
+                <span>Actualiza Monto Prestamo</span>
+            </mat-toolbar>
+        </div>
+        <p>IEZIDPRADO!</p>
+        <div class="row" style="margin-top: 2%">
+            <mat-form-field class="col-md-5">
+              <mat-label>Capital</mat-label>
+              <input matInput [(ngModel)]="montoPrestamo.capital" name="numero" formControlName="validaCapital">
+              <mat-hint style="color: red;" *ngIf="formRegistrar.controls.validaCapital.touched">
+                  <span *ngIf="formRegistrar.controls.validaCapital.hasError('required')">
+                      Capital es requerido
+                  </span>
+                  <span *ngIf="formRegistrar.controls.validaCapital.hasError('pattern')">Solo se permiten números enteros y no números decimales</span>
+              </mat-hint>
+            </mat-form-field>
+        </div>
+  
+        <div class="row" style="margin-top: 2%">
+            <mat-form-field class="col-md-5">
+                <mat-label>Días</mat-label>
+                <mat-select [(ngModel)]="montoPrestamo.dias!.idDataCatalogo" formControlName="validaDias">
+                    <mat-option value="-1"> [Seleccione] </mat-option>
+                    <mat-option *ngFor="let x of lstDias" [value]="x.idDataCatalogo">{{x.descripcion}}</mat-option>
+                </mat-select>
+                <mat-hint style="color: red;" *ngIf="formRegistrar.controls.validaDias.touched">
+                    <span *ngIf="formRegistrar.controls.validaDias.hasError('min')">El días es requerido</span>
+                </mat-hint>
+            </mat-form-field>
+            </div>
+
+        <div class="row" style="margin-top: 2%">
+          <div class="col-md-5">
+              <mat-form-field class="custom-form-field">
+                  <mat-label>Monto Total</mat-label>
+                  <input matInput [(ngModel)]="montoPrestamo.monto" name="numero" formControlName="validaMonto">
+                  <mat-hint style="color: red;" *ngIf="formRegistrar.controls.validaMonto.touched">
+                      <span *ngIf="formRegistrar.controls.validaMonto.hasError('required')">Monto es requerido</span>
+                      <span *ngIf="formRegistrar.controls.validaMonto.hasError('pattern')">Solo se pueden ingresar números y máximo 2 decimales</span>
+                  </mat-hint>
+              </mat-form-field>
+          </div>
+      </div>
+  
+        <div class="row" style="margin-top: 3%; margin-left: auto; margin-right: auto; max-width: fit-content;">
+             <div mat-dialog-actions>
+             <button mat-raised-button type="submit" color="primary" [disabled]="formRegistrar.invalid" [mat-dialog-close]="1" (click)="actualiza()">Actualiza</button>
+            <button mat-button type="submit" (click)="salir()" [mat-dialog-close]="2">Salir</button>
+            </div>
+        </div>
+        </div>
+    </form>
+  </div>
+

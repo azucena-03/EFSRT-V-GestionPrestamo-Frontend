@@ -1,0 +1,82 @@
+<app-menu></app-menu>
+<p>IEZIDPRADO!NNNN</p>
+<div class="container">
+    <div class="row">
+        <mat-toolbar color="primary">
+            <span>Consulta Monto Prestamo</span>
+        </mat-toolbar>
+    </div>
+
+    <div class="row" style="margin-top: 3%">
+        <mat-form-field class="col-md-5">
+            <mat-label>Capital</mat-label>
+            <input matInput [(ngModel)]="capital" >
+        </mat-form-field>
+        <mat-form-field class="col-md-4">
+            <mat-label>Dias</mat-label>
+            <mat-select [(ngModel)]="idDias">
+                <mat-option value="-1"> [Todos] </mat-option>
+                <mat-option *ngFor="let aux of lstDias" [value]="aux.idDataCatalogo">
+                    {{aux.descripcion}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div class="col-md-2" style="display: flex; align-items: center; justify-content: center">
+            <div class="custom-control custom-switch">
+                <input [(ngModel)]="estado" type="checkbox" class="custom-control-input" id="idEstado" name="estado"  [checked]="true"/>
+                <label class="custom-control-label" for="idEstado">Estado</label>
+            </div>
+        </div>
+        <mat-form-field class="col-md-5">
+            <mat-label>Monto</mat-label>
+            <input matInput [(ngModel)]="monto">
+        </mat-form-field>
+    </div>
+
+    <div class="row" style="margin-top: 3%; display: flex; align-items: center; justify-content: center">
+        <button mat-raised-button type="button" color="primary" style="width: 100px;" >Filtrar</button>
+    </div>
+
+
+    <div class="row" style="margin-top: 3%">
+
+        <mat-table #table class="mat-cell" [dataSource]="dataSource">
+            <ng-container matColumnDef="idMontoPrestamo">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Código</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.idMontoPrestamo }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="capital">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Capital</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.capital}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="dias">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Días</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.dias.descripcion}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="monto">
+              <mat-header-cell mat-header-cell *matHeaderCellDef>Monto Pagar</mat-header-cell>
+              <mat-cell *matCellDef="let aux">{{ aux.monto}}</mat-cell>
+          </ng-container>
+            <ng-container matColumnDef="estado">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Estado</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.estado == 1 ? "Activo" : "Inactivo" }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="acciones">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>&nbsp;</mat-header-cell>
+                <mat-cell *matCellDef="let aux; let i=index;">
+
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="idEstado_{{ aux.idMontoPrestamo}}" name="estado"
+                            [checked]="aux.estado==1?true:false"
+                             />
+                        <label class="custom-control-label" for="idEstado_{{ aux.idMontoPrestamo}}"></label>
+                    </div>
+                    </mat-cell>
+                </ng-container>
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let aux; columns: displayedColumns"></mat-row>
+            </mat-table>
+       <mat-paginator [pageSizeOptions]="[6,8,10]" showFirstLastButtons></mat-paginator>
+    </div>
+
+</div>

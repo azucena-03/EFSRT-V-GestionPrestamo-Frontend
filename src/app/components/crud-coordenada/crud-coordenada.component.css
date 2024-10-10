@@ -1,0 +1,27 @@
+.mat-column-idCoordenada {
+    flex: 0 0 7%;
+}
+
+.mat-column-latitud {
+    flex: 0 0 9%;
+}
+
+.mat-column-longitud {
+    flex: 0 0 9%;
+}
+
+.mat-column-prestatario {
+    flex: 0 0 20%;
+}
+
+.mat-column-ubigeo {
+    flex: 0 0 30%;
+}
+
+.mat-column-estado {
+    flex: 0 0 10%;
+}
+
+.mat-column-acciones {
+    flex: 0 0 15%;
+}

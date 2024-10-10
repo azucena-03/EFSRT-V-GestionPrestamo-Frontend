@@ -1,0 +1,72 @@
+<app-menu></app-menu>
+<div class="container">
+    <div class="row">
+        <mat-toolbar color="primary">
+            <span>Crud Cuenta</span>
+        </mat-toolbar>
+    </div>
+    <div class="row" style="margin-top: 3%; display: flex; align-items: center; justify-content: space-around;">
+        <mat-form-field class="col-md-3">
+            <mat-label>Nombre</mat-label>
+            <input matInput [(ngModel)]="nombre">
+        </mat-form-field>
+
+        <mat-form-field class="col-md-3">
+            <mat-label>Gerente</mat-label>
+            <input matInput [(ngModel)]="gerente">
+        </mat-form-field>
+
+        <mat-form-field class="col-md-3">
+            <mat-label>Tipo de Entidad Financiera</mat-label>
+            <mat-select [(ngModel)]="tipoEntidad">
+                <mat-option value="-1">[Todos]</mat-option>
+                <mat-option *ngFor="let aux of lstTipoEntidad" [value]="aux.idDataCatalogo">
+                    {{ aux.descripcion }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div class="col-md-3" style="display: flex; align-items: center; justify-content: center">
+            <div class="custom-control custom-switch">
+                <input [(ngModel)]="estado" type="checkbox" class="custom-control-input" id="idEstado" name="estado"
+                    [checked]="true" />
+                <label class="custom-control-label" for="idEstado">Estado</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 3%; display: flex; align-items: center; justify-content: center;">
+        <button (click)="consultar()" mat-raised-button type="button" color="primary"
+            style="width: 100px;">Filtrar</button>
+    </div>
+    <div class="row" style="margin-top: 3%">
+
+        <mat-table #table class="mat-cell" [dataSource]="dataSource">
+            <ng-container matColumnDef="idEntidadFinanciera">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Código</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.idEntidadFinanciera }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="nombre">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Nombre</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.nombre}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="gerente">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Gerente</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.gerente}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="tipoEntidad">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Tipo de Entidad</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.tipoEntidad.descripcion}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="estado">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Estado</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.estado == 1 ? "Activo" : "Inactivo" }}</mat-cell>
+            </ng-container>
+
+
+         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let aux; columns: displayedColumns"></mat-row>
+       </mat-table>
+       <mat-paginator [pageSizeOptions]="[6,8,10]" showFirstLastButtons></mat-paginator>
+
+   </div>
+</div>

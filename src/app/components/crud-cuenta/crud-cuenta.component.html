@@ -1,0 +1,72 @@
+<app-menu></app-menu>
+<div class="container">
+    <div class="row">
+        <mat-toolbar color="primary">
+            <span>Crud Cuenta</span>
+        </mat-toolbar>
+    </div>
+    <div class="row" style="margin-top: 3%;">
+        <mat-form-field class="col-md-4">
+            <mat-label>Descripción de cuenta</mat-label>
+            <input matInput [(ngModel)]="filtro">
+        </mat-form-field>
+        <button (click)="refreshTable()" mat-raised-button type="button" color="primary"
+            style="width: 150px;">Filtrar</button>
+        <button (click)="openDialogRegistrar()" mat-raised-button type="button" color="primary"
+            style="width: 150px;">Registrar</button>
+        <button (click)="filterStatus()" mat-raised-button type="button" color="primary"
+            style="width: 200px;">Filtrar estado activo</button>
+       
+        
+    </div>
+    <div class="row" style="margin-top: 3%;">
+
+        <mat-table #table class="mat-cell" [dataSource]="dataSource">
+            <ng-container matColumnDef="idCuenta">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Código</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.idCuenta }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="numero">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Número de Cuenta Bancaria </mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.numero }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="tipofinan">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Tipo de Entidad</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.entidadFinanciera.tipoEntidad.descripcion}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="entidadFinancieraa">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Entidad Financiera</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.entidadFinanciera.nombre}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="tipoMonedaa">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Tipo de Moneda</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.tipoMoneda.descripcion}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="estado">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Estado</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.estado == 1 ? "Activo" : "Inactivo" }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="acciones">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>&nbsp;</mat-header-cell>
+                <mat-cell *matCellDef="let aux; let i=index;">
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="idEstado_{{ aux.idCuenta}}"
+                            name="estado" [checked]="aux.estado==1?true:false" (change)="updateEstado(aux)" />
+                        <label class="custom-control-label" for="idEstado_{{ aux.idCuenta}}"></label>
+                    </div>
+                    <button mat-icon-button color="accent" (click)="openDialogActualizar(aux)">
+                        <mat-icon aria-label="Edit">edit</mat-icon>
+                    </button>
+                    <button mat-icon-button color="warn" (click)="delete(aux)">
+                        <mat-icon aria-label="Delete">delete</mat-icon>
+                    </button>
+                </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let aux; columns: displayedColumns"></mat-row>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[10,8,6]" showFirstLastButtons></mat-paginator>
+    </div>
+
+
+</div>

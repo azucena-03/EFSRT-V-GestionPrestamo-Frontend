@@ -1,0 +1,99 @@
+
+<div class="container">
+
+    <form [formGroup]="formRegistrar">
+                    <div class="row">
+                            <mat-toolbar color="primary" >    
+                            <span>Actualiza Grupo</span>    
+                            </mat-toolbar>  
+                    </div>
+                    <div  class="row"  style="margin-top: 3%">
+                                <mat-form-field class="col-md-4">
+                                    <mat-label>Nombre</mat-label>
+                                    <input  matInput [(ngModel)] ="grupo.descripcion" formControlName="validaDescripcion">
+                                    <mat-hint style="color: red;" *ngIf="formRegistrar.controls.validaDescripcion.touched">
+                                        <span *ngIf="formRegistrar.controls.validaDescripcion.hasError('required')">
+                                           El Nombre es requerido
+                                        </span>
+                                        <span *ngIf="formRegistrar.controls.validaDescripcion.hasError('pattern')">
+                                           El Nombre es de 3 a 30 caracteres
+                                        </span>
+                                        <span *ngIf="formRegistrar.controls.validaDescripcion.hasError('existeDescripcion')">
+                                            El Nombre ya existe
+                                        </span>
+                                    </mat-hint>
+                                </mat-form-field>     
+                    </div>
+                    <div class="row" style="margin-top: 3%">
+                        
+                        <mat-form-field class="col-md-4">
+                            <mat-label>Departamento</mat-label>
+                            <mat-select  [(ngModel)]="grupo.ubigeo!.departamento" (selectionChange)="listaProvincia()" formControlName="validaDepartamento">
+                                <mat-option value="-1"> [Seleccione] </mat-option>
+                                <mat-option *ngFor="let x of departamentos" [value]="x">
+                                    {{x}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-hint style="color: red;" *ngIf="formRegistrar.controls.validaDepartamento.touched">
+                                <span *ngIf="formRegistrar.controls.validaDepartamento.hasError('min')">
+                                    El departamento es requerido
+                                </span>
+                            </mat-hint>
+                        </mat-form-field>
+    
+                        <mat-form-field class="col-md-4">
+                            <mat-label>Provincia</mat-label>
+                            <mat-select [(ngModel)]="grupo.ubigeo!.provincia" (selectionChange)="listaDistrito()" formControlName="validaProvincia">
+                                <mat-option value="-1"> [Seleccione] </mat-option>
+                                <mat-option *ngFor="let x of provincias" [value]="x">
+                                    {{x}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-hint style="color: red;" *ngIf="formRegistrar.controls.validaProvincia.touched">
+                                <span *ngIf="formRegistrar.controls.validaProvincia.hasError('min')">
+                                    La provincia es requerido
+                                </span>
+                            </mat-hint>
+                        </mat-form-field>
+    
+                    <mat-form-field class="col-md-4">
+                        <mat-label>Distrito</mat-label>
+                        <mat-select [(ngModel)]="grupo.ubigeo!.idUbigeo" formControlName="validaDistrito">
+                            <mat-option value="-1"> [Seleccione] </mat-option>
+                            <mat-option *ngFor="let x of distritos" [value]="x.idUbigeo">
+                                {{x.distrito}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-hint style="color: red;" *ngIf="formRegistrar.controls.validaDistrito.touched">
+                            <span *ngIf="formRegistrar.controls.validaDistrito.hasError('min')">
+                                El distrito es requerido
+                            </span>
+                        </mat-hint>
+                    </mat-form-field>
+                    </div>
+    
+                    <div class="row" style="margin-top: 3%">
+                     
+                        <mat-form-field class="col-md-6">
+                            <mat-label>Lider</mat-label>
+                            <mat-select [(ngModel)]="grupo.usuarioLider!.idUsuario" formControlName="validaLider">
+                              <mat-option value="-1">[Seleccione]</mat-option>
+                              <mat-option *ngFor="let x of lstPrestamistasTotales" [value]="x.idUsuario">
+                                {{ x.nombreCompleto }}
+                              </mat-option>
+                            </mat-select>
+                            <mat-hint style="color: red;" *ngIf="formRegistrar.controls.validaLider.touched">
+                              <span *ngIf="formRegistrar.controls.validaLider.hasError('min')">
+                                El Líder es requerido
+                              </span>
+                            </mat-hint>
+                          </mat-form-field>
+    
+                    </div>
+    
+                    <div  class="row"  style="margin-top: 3%; margin-left: auto; margin-right: auto; max-width: fit-content;" >
+                        <button mat-raised-button type="submit" color="primary" [disabled]="formRegistrar.invalid" (click)="actualiza()">Actualiza</button>
+                        <button mat-button type="submit" (click)="salir()"[mat-dialog-close]="2" [ngStyle]="{'color': 'red'}">Salir </button>
+                    </div>
+    </form>
+      </div>

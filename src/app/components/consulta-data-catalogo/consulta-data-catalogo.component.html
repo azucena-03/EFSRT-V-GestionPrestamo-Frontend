@@ -1,0 +1,58 @@
+<app-menu></app-menu>
+<div class="container">
+  <div class="row">
+    <mat-toolbar color="primary">
+      <span>Consulta Data Catalog</span>
+    </mat-toolbar>
+  </div>
+  <div class="row" style="margin-top: 3%">
+    <mat-form-field class="col-md-4">
+      <mat-label>Nombre</mat-label>
+      <input matInput [(ngModel)]="descripcion">
+    </mat-form-field>
+
+    <mat-form-field class="col-md-4">
+      <mat-label>Tipo</mat-label>
+      <mat-select [(ngModel)]="idCatalogo">
+        <mat-option value="-1">[Seleccione]</mat-option>
+        <mat-option *ngFor="let x of lstCatalogo" [value]="x.idCatalogo">
+          {{ x.descripcion }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="col-md-3" style="display: flex; align-items: center; justify-content: center">
+      <div class="custom-control custom-switch">
+        <input [(ngModel)]="estado" type="checkbox" class="custom-control-input" id="idEstado" name="estado" />
+        <label class="custom-control-label" for="idEstado">Estado</label>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 3%; margin-left: auto; margin-right: auto; max-width: fit-content;">
+    <button mat-raised-button type="submit" color="primary" (click)="consultar()">Filtra</button>
+  </div>
+
+  <div class="row" style="margin-top: 3%">
+    <mat-table [dataSource]="dataSource" class="mat-cell">
+      <ng-container matColumnDef="idDataCatalogo">
+        <mat-header-cell *matHeaderCellDef>Código</mat-header-cell>
+        <mat-cell *matCellDef="let aux">{{ aux.idDataCatalogo }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="descripcion">
+        <mat-header-cell *matHeaderCellDef>Descripción</mat-header-cell>
+        <mat-cell *matCellDef="let aux">{{ aux.descripcion }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="idCatalogo">
+        <mat-header-cell *matHeaderCellDef>Catalogo</mat-header-cell>
+        <mat-cell *matCellDef="let aux">{{ aux.catalogo.descripcion }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="estado">
+        <mat-header-cell *matHeaderCellDef>Estado</mat-header-cell>
+        <mat-cell *matCellDef="let aux">{{ aux.estado == 1 ? 'Activo' : 'Inactivo' }}</mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let aux; columns: displayedColumns"></mat-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[6, 8, 10]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>

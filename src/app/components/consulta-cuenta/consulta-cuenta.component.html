@@ -1,0 +1,87 @@
+<app-menu></app-menu>
+<div class="container">
+    <div class="row">
+        <mat-toolbar color="primary">
+            <span>Crud Cuenta</span>
+        </mat-toolbar>
+    </div>
+    <div class="row" style="margin-top: 3%; display: flex; align-items: center; justify-content: space-around;">
+        <mat-form-field class="col-md-3">
+            <mat-label>Número de cuenta</mat-label>
+            <input matInput [(ngModel)]="numero">
+        </mat-form-field>
+        <mat-form-field class="col-md-3">
+            <mat-label>Tipo de Entidad Financiera</mat-label>
+            <mat-select [(ngModel)]="idTipoFinanciera" (selectionChange)="filtrarEntidades($event.value)">
+                <mat-option value="-1">[Todos]</mat-option>
+                <mat-option *ngFor="let aux of lstTipoFinanciera" [value]="aux.idDataCatalogo">
+                    {{ aux.descripcion }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div class="col-md-3" style="display: flex; align-items: center; justify-content: center">
+            <div class="custom-control custom-switch">
+                <input [(ngModel)]="estado" type="checkbox" class="custom-control-input" id="idEstado" name="estado"
+                    [checked]="true" />
+                <label class="custom-control-label" for="idEstado">Estado</label>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 3%;display: flex; align-items: center; justify-content: space-around;">
+
+        <mat-form-field class="col-md-4">
+            <mat-label>Entidad Financiera</mat-label>
+            <mat-select [(ngModel)]="idEntidadFinanciera">
+                <mat-option value="-1">[Todos]</mat-option>
+                <mat-option *ngFor="let aux of lstEntidadesFinancieras" [value]="aux.idEntidadFinanciera">
+                    {{ aux.nombre }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="col-md-4">
+            <mat-label>Tipo de Moneda</mat-label>
+            <mat-select [(ngModel)]="idTipoMoneda">
+                <mat-option value="-1">[Todos]</mat-option>
+                <mat-option *ngFor="let aux of lstTipoMoneda" [value]="aux.idDataCatalogo">
+                    {{ aux.descripcion }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div class="row" style="margin-top: 3%; display: flex; align-items: center; justify-content: center;">
+        <button (click)="consultar()" mat-raised-button type="button" color="primary"
+            style="width: 100px;">Filtrar</button>
+    </div>
+    <div class="row" style="margin-top: 3%;">
+        <mat-table #table class="mat-cell" [dataSource]="dataSource">
+            <ng-container matColumnDef="idCuenta">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Código</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.idCuenta }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="numero">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Número de Cuenta Bancaria </mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.numero }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="tipofinan">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Tipo de Entidad</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.entidadFinanciera.tipoEntidad.descripcion}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="entidadFinancieraa">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Entidad Financiera</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.entidadFinanciera.nombre}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="tipoMonedaa">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Tipo de Moneda</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.tipoMoneda.descripcion}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="estado">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Estado</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.estado == 1 ? "Activo" : "Inactivo" }}</mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let aux; columns: displayedColumns"></mat-row>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[4,8,10]" showFirstLastButtons></mat-paginator>
+    </div>
+</div>

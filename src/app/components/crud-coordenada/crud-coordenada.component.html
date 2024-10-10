@@ -1,0 +1,68 @@
+<app-menu></app-menu>
+<div class="container">
+    <div class="row">
+        <mat-toolbar color="primary">
+            <span>Crud Coordenada</span>
+        </mat-toolbar>
+    </div>
+    <div class="row mt-4">
+        <mat-form-field class="col-md-4">
+            <mat-label>Nombre completo de Prestatario</mat-label>
+            <input matInput [(ngModel)]="filtro">
+        </mat-form-field>
+
+        <button (click)="refreshTable()" mat-raised-button type="button" color="primary"
+            class="col-md-2 mx-1 my-2">Filtrar</button>
+        <button (click)="openDialogRegistrar()" mat-raised-button type="button" color="primary"
+            class="col-md-2 mx-1 my-2">Registrar</button>
+    </div>
+    <div class="row mt-4">
+        <mat-table #table class="mat-cell" [dataSource]="dataSource">
+            <ng-container matColumnDef="idCoordenada">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Código</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.idCoordenada }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="latitud">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Latitud</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.latitud }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="longitud">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Longitud</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.longitud }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="prestatario">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Prestatario</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.prestatario.nombres }} {{ aux.prestatario.apellidos }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="ubigeo">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Ubigeo</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.ubigeo.departamento }} - {{ aux.ubigeo.provincia }} - {{
+                    aux.ubigeo.distrito }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="estado">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Estado</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.estado == 1 ? "Activo" : "Inactivo" }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="acciones">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>&nbsp;</mat-header-cell>
+                <mat-cell *matCellDef="let aux; let i = index">
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="idEstado_{{ aux.idCoordenada }}"
+                            name="estado" [checked]="aux.estado == 1 ? true : false" (change)="updateEstado(aux)" />
+                        <label class="custom-control-label" for="idEstado_{{ aux.idCoordenada }}"></label>
+                    </div>
+
+                    <button mat-icon-button color="accent" (click)="openDialogActualizar(aux)">
+                        <mat-icon aria-label="Edit">edit</mat-icon>
+                    </button>
+                    <button mat-icon-button color="accent" (click)="delete(aux)">
+                        <mat-icon aria-label="Delete">delete</mat-icon>
+                    </button>
+                </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let aux; columns: displayedColumns"></mat-row>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[2,4,6]" showFirstLastButtons></mat-paginator>
+    </div>
+</div>

@@ -1,0 +1,107 @@
+<div class="container">
+    <form [formGroup]="formActualizar">
+        <div class="row">
+            <mat-toolbar color="primary">
+                <span>Actualiza Coordenada</span>
+            </mat-toolbar>
+        </div>
+        <div class="row my-4">
+            <mat-form-field class="col-md-4">
+                <mat-label>Prestatario</mat-label>
+                <mat-select [(ngModel)]="coordenada.prestatario!.idUsuario" formControlName="validaPrestatario">
+                    <mat-option value="-1"> [Seleccione] </mat-option>
+                    <mat-option *ngFor="let x of prestatarios" [value]="x.idUsuario">
+                        {{x.nombreCompleto}}
+                    </mat-option>
+                </mat-select>
+                <mat-hint style="color: red;" *ngIf="formActualizar.controls.validaPrestatario.touched">
+                    <span *ngIf="formActualizar.controls.validaPrestatario.hasError('min')">
+                        El prestatario es requerido
+                    </span>
+                    <span *ngIf="formActualizar.controls.validaPrestatario.hasError('existePrestatario')">
+                        El prestatario ya existe
+                    </span>
+                </mat-hint>
+            </mat-form-field>
+            <mat-form-field class="col-md-4">
+                <mat-label>Latitud</mat-label>
+                <input matInput [(ngModel)]="coordenada.latitud" formControlName="validaLatitud">
+                <mat-hint style="color: red;" *ngIf="formActualizar.controls.validaLatitud.touched">
+                    <span *ngIf="formActualizar.controls.validaLatitud.hasError('required')">
+                        La latitud es requerida
+                    </span>
+                </mat-hint>
+                <mat-hint style="color: red;" *ngIf="formActualizar.controls.validaLatitud.touched">
+                    <span *ngIf="formActualizar.controls.validaLatitud.hasError('pattern')">
+                        Máximo 3 decimales y solo usa punto
+                    </span>
+                </mat-hint>
+            </mat-form-field>
+            <mat-form-field class="col-md-4">
+                <mat-label>Longitud</mat-label>
+                <input matInput [(ngModel)]="coordenada.longitud" formControlName="validaLongitud">
+                <mat-hint style="color: red;" *ngIf="formActualizar.controls.validaLongitud.touched">
+                    <span *ngIf="formActualizar.controls.validaLongitud.hasError('required')">
+                        La longitud es requerida
+                    </span>
+                </mat-hint>
+                <mat-hint style="color: red;" *ngIf="formActualizar.controls.validaLongitud.touched">
+                    <span *ngIf="formActualizar.controls.validaLongitud.hasError('pattern')">
+                        Máximo 3 decimales y solo usa punto
+                    </span>
+                </mat-hint>
+            </mat-form-field>
+        </div>
+        <div class="row my-4">
+            <mat-form-field class="col-md-4">
+                <mat-label>Departamento</mat-label>
+                <mat-select [(ngModel)]="coordenada.ubigeo!.departamento" (selectionChange)="listaProvincia()"
+                    formControlName="validaDepartamento">
+                    <mat-option value="-1">[Seleccione]</mat-option>
+                    <mat-option *ngFor="let x of departamentos" [value]="x">
+                        {{x}}
+                    </mat-option>
+                </mat-select>
+                <mat-hint style="color: red;" *ngIf="formActualizar.controls.validaDepartamento.touched">
+                    <span *ngIf="formActualizar.controls.validaDepartamento.hasError('min')">
+                        El departamento es requerido
+                    </span>
+                </mat-hint>
+            </mat-form-field>
+            <mat-form-field class="col-md-4">
+                <mat-label>Provincia</mat-label>
+                <mat-select [(ngModel)]="coordenada.ubigeo!.provincia" (selectionChange)="listaDistrito()"
+                    formControlName="validaProvincia">
+                    <mat-option value="-1"> [Seleccione] </mat-option>
+                    <mat-option *ngFor="let x of provincias" [value]="x">
+                        {{x}}
+                    </mat-option>
+                </mat-select>
+                <mat-hint style="color: red;" *ngIf="formActualizar.controls.validaProvincia.touched">
+                    <span *ngIf="formActualizar.controls.validaProvincia.hasError('min')">
+                        La provincia es requerida
+                    </span>
+                </mat-hint>
+            </mat-form-field>
+            <mat-form-field class="col-md-4">
+                <mat-label>Distrito</mat-label>
+                <mat-select [(ngModel)]="coordenada.ubigeo!.idUbigeo" formControlName="validaDistrito">
+                    <mat-option value="-1">[Seleccione]</mat-option>
+                    <mat-option *ngFor="let x of distritos" [value]="x.idUbigeo">
+                        {{x.distrito}}
+                    </mat-option>
+                </mat-select>
+                <mat-hint style="color: red;" *ngIf="formActualizar.controls.validaDistrito.touched">
+                    <span *ngIf="formActualizar.controls.validaDistrito.hasError('min')">
+                        El distrito es requerido
+                    </span>
+                </mat-hint>
+            </mat-form-field>
+        </div>
+        <div class="row mx-auto">
+            <button mat-raised-button type="submit" color="primary" [disabled]="formActualizar.invalid"
+                (click)="actualiza()" [mat-dialog-close]="1" class="ml-auto mr-2 col-md-2">Actualiza</button>
+            <button mat-button type="submit" [mat-dialog-close]="2" class="mr-auto ml-2 col-md-2">Salir</button>
+        </div>
+    </form>
+</div>

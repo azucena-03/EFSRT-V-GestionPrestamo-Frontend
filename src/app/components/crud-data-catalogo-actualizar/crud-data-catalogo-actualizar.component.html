@@ -1,0 +1,53 @@
+<div class="container">
+    <form [formGroup]="formRegistrar">
+        <div class="row">
+            <mat-toolbar color="primary" >    
+            <span>Registra Data Catalog</span>    
+            </mat-toolbar>  
+    </div>
+    <div class="row"  style="margin-top: 3%">
+        <mat-form-field class="col-md-4">
+            <mat-label>Nombre</mat-label>
+            <input  matInput [(ngModel)] ="dataCatalogo.descripcion" formControlName="validaDescripcion">
+            <mat-hint style="color: red;" *ngIf="formRegistrar.controls.validaDescripcion.touched">
+                <span *ngIf="formRegistrar.controls.validaDescripcion.hasError('required')">
+                    La descripción es requerida
+                </span>
+                <span *ngIf="formRegistrar.controls.validaDescripcion.hasError('existeDescripcion')">
+                    La descripción ya existe
+                </span>
+            </mat-hint>
+        </mat-form-field>
+
+        <mat-form-field class="col-md-4">
+            <mat-label>Tipo</mat-label>
+            <mat-select [(ngModel)]="dataCatalogo.catalogo!.idCatalogo" formControlName="validaCatalogo">
+              <mat-option value="-1"> [Seleccione] </mat-option>
+              <mat-option *ngFor="let x of lstCatalogo" [value]="x.idCatalogo">
+                {{x.descripcion}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div class="col-md-2" style="display: flex; align-items: center; justify-content: center">
+            <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="idEstado" name="estado"
+                     [checked]="dataCatalogo.estado === 1"
+                     (change)="onCheckboxChange($event)" />
+              <label class="custom-control-label" for="idEstado">Estado</label>
+            </div>
+          </div>
+    </div>
+
+    <div class="row" style="margin-top: 3%; margin-left: auto; margin-right: auto; max-width: fit-content;">
+        <div mat-dialog-actions>
+            <button mat-raised-button type="submit" color="primary" [disabled]="formRegistrar.invalid"
+                [mat-dialog-close]="1" (click)="actualizar()">actualizar
+            </button>
+            <button mat-button type="submit" (click)="salir()" [mat-dialog-close]="2">Salir
+            </button>
+        </div>
+    </div>
+
+    </form>
+</div>
