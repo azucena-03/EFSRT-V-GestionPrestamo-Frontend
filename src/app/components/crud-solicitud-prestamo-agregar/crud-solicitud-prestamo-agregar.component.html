@@ -1,1 +1,50 @@
-<p>crud-solicitud-prestamo-agregar works!</p>
+<div class="container">
+    <div class="mat-dialog-content" id="idFormModalidad">
+        <div class="row">
+            <mat-toolbar color="primary">
+                <span>Actualiza Alumno</span>
+            </mat-toolbar>
+        </div>
+        <div class="row" style="margin-top: 3%">
+            <mat-form-field class="col-md-4">
+                <mat-label>Capital</mat-label>
+                <input matInput [(ngModel)]="objSolicitud.capital">
+            </mat-form-field>
+            <mat-form-field class="col-md-4">
+                <mat-label>Dias</mat-label>
+                <mat-select [(ngModel)]="objSolicitud.dias!.idDataCatalogo">
+                    <mat-option value="-1"> [Seleccione] </mat-option>
+                    <mat-option *ngFor="let x of lstDias" [value]="x.idDataCatalogo">
+                        {{x.descripcion}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="col-md-4">
+                <mat-label>Monto a Pagar</mat-label>
+                <input matInput [(ngModel)]="objSolicitud.montoPagar">
+            </mat-form-field>
+        </div>
+        <div class="row" style="margin-top: 3%">
+            <mat-form-field class="col-md-4">
+                <mat-label>Fecha Inicio Prestamo</mat-label>
+                <input matInput [matDatepicker]="picker" [(ngModel)]="objSolicitud.fechaInicioPrestamo">
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field class="col-md-4">
+                <mat-label>Fecha Fin Prestamo</mat-label>
+                <input matInput [matDatepicker]="picker" [(ngModel)]="objSolicitud.fechaFinPrestamo">
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div mat-dialog-actions>
+            <button mat-raised-button type="submit" (click)="actualizar()" color="primary" [mat-dialog-close]="1">
+                Actualiza
+            </button>
+            <button mat-button color="primary">
+                Salir
+            </button>
+        </div>
+    </div>
+</div>

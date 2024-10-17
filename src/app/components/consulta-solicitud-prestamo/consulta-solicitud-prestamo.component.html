@@ -1,1 +1,65 @@
-<p>consulta-solicitud-prestamo works!</p>
+<app-menu></app-menu>
+<div class="tw-container tw-px-[9rem]">
+    <div class="tw-flex tw-justify-center tw-gap-x-4 tw-mb-4 tw-text-lg">
+        <label>
+            <input type="radio" name="estado" value="1"
+                class="tw-appearance-none tw-w-4 tw-h-4 tw-border tw-border-gray tw-rounded-full checked:tw-bg-dark-green checked:tw-border-transparent focus:tw-outline-none tw-transition tw-duration-200"
+                (change)="filtrarPorEstado('Aceptado')"> Aceptado
+        </label>
+        <label>
+            <input type="radio" name="estado" value="2"
+                class="tw-appearance-none tw-w-4 tw-h-4 tw-border tw-border-gray tw-rounded-full checked:tw-bg-dark-green checked:tw-border-transparent focus:tw-outline-none tw-transition tw-duration-200"
+                (change)="filtrarPorEstado('Generado')"> Generado
+        </label>
+        <label>
+            <input type="radio" name="estado" value="3"
+                class="tw-appearance-none tw-w-4 tw-h-4 tw-border tw-border-gray tw-rounded-full checked:tw-bg-dark-green checked:tw-border-transparent focus:tw-outline-none tw-transition tw-duration-200"
+                (change)="filtrarPorEstado('Rechazado')"> Rechazado
+        </label>
+    </div>
+
+    <table class="tw-w-full tw-text-lg tw-text-left tw-text-gray">
+        <thead class="tw-text-xs tw-text-white tw-uppercase tw-bg-dark-green">
+            <tr class="tw-font-DMSans">
+                <th class="tw-px-6 py-3 tw-rounded-s-lg tw-tracking-widest">ID Préstamo</th>
+                <th scope="col" class="tw-px-6 tw-py-3 tw-tracking-widest">Capital</th>
+                <th scope="col" class="tw-px-6 tw-py-3 tw-tracking-widest">Días</th>
+                <th scope="col" class="tw-px-6 tw-py-3 tw-tracking-widest tw-rounded-e-lg">Estado</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let prestamo of prestamosFiltrados" class="tw-border-b">
+                <td scope="row" class="tw-px-6 tw-py-4 tw-font-medium tw-text-gray-900 tw-whitespace-nowrap">{{
+                    prestamo.idSolicitud }}</td>
+                <td class="tw-px-6 tw-py-4">{{ prestamo.capital }}</td>
+                <td class="tw-px-6 tw-py-4">{{ prestamo.dias.descripcion }}</td>
+                <td class="tw-px-6 tw-py-4">{{ prestamo.estadoSolicitud.descripcion}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- <div class="row mt-4">
+    <mat-table #table class="mat-cell" [dataSource]="prestamosFiltrados">
+        <ng-container matColumnDef="idSolicitud">
+            <mat-header-cell *matHeaderCellDef> Código </mat-header-cell>
+            <mat-cell *matCellDef="let aux"> {{ aux.idSolicitud }} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="capital">
+            <mat-header-cell *matHeaderCellDef> Descripción </mat-header-cell>
+            <mat-cell *matCellDef="let aux"> {{ aux.capital }} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="dias">
+            <mat-header-cell *matHeaderCellDef> Líder </mat-header-cell>
+            <mat-cell *matCellDef="let aux"> {{ aux.dias.descripcion }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="estado">
+            <mat-header-cell *matHeaderCellDef> Estado </mat-header-cell>
+            <mat-cell *matCellDef="let aux"> {{ aux.estadoSolicitud.descripcion}} </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let aux; columns: displayedColumns"></mat-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[2, 4, 6]" showFirstLastButtons></mat-paginator>
+</div> -->

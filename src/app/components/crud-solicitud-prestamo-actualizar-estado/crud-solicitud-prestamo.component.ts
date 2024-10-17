@@ -19,9 +19,7 @@ import { CrudSolicitudPrestamoActualizarComponent } from '../crud-solicitud-pres
   templateUrl: './crud-solicitud-prestamo.component.html',
   styleUrl: './crud-solicitud-prestamo.component.css',
 })
-export class CrudSolicitudPrestamoComponent {
-  fechaInicio: Date = new Date('01-01-1900');
-  fechaFin: Date = new Date();
+export class ActualizarSolicitudPrestamoEstado {
   dataSource: any;
 
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
@@ -33,6 +31,7 @@ export class CrudSolicitudPrestamoComponent {
     'montoPagar',
     'fechaInicioPrestamo',
     'fechaFinPrestamo',
+    'estadoSolicitud',
     'acciones',
   ];
   filtro: string = '';
@@ -40,6 +39,7 @@ export class CrudSolicitudPrestamoComponent {
     private dialogService: MatDialog,
     private prestamoService: PrestamoService
   ) {}
+
   refreshTable() {
     console.log('>>> refreshTable [ini]');
     this.prestamoService.obtenerPrestamos().subscribe((x) => {
@@ -49,54 +49,28 @@ export class CrudSolicitudPrestamoComponent {
     console.log('>>> refreshTable [fin]');
   }
 
-  consulta() {
-    console.log('>>> consulta [ini]');
-    this.prestamoService
-      .obtenerPrestamosPorFecha(
-        this.fechaInicio.toISOString(),
-        this.fechaFin.toISOString()
-      )
-      .subscribe((x) => {
-        this.dataSource = new MatTableDataSource<SolicitudPrestamo>(x);
-        this.dataSource.paginator = this.paginator;
-      });
-  }
+  // actualizaEstado(obj: SolicitudPrestamo) {
+  //   obj.estado = obj.estado == 1 ? 0 : 1;
+  //   this.prestamoService.actualizarCrud(obj).subscribe();
+  // }
 
-  openUpdateDialog(obj: SolicitudPrestamo) {
-    console.log('>>> openUpdateDialog [ini]');
-    const dialogo = this.dialogService.open(
-      CrudSolicitudPrestamoActualizarComponent,
-      {
-        data: obj,
+  actualizaEstado(obj: SolicitudPrestamo) {
+    if (obj.estadoSolicitud && obj.estadoSolicitud.idDataCatalogo) {
+      if (obj.estadoSolicitud.idDataCatalogo === 13) {
+        obj.estadoSolicitud.idDataCatalogo = 14;
+      } else if (obj.estadoSolicitud.idDataCatalogo === 14) {
+        obj.estadoSolicitud.idDataCatalogo = 13;
       }
-    );
-    dialogo.afterClosed().subscribe((x) => {
-      console.log('>>> x >> ' + x);
-      if (x === 1) {
-        this.refreshTable();
-      }
-    });
-    console.log('>>> openUpdateDialog [fin]');
-  }
-  elimina(obj: SolicitudPrestamo) {
-    Swal.fire({
-      title: '¿Desea eliminar?',
-      text: 'Los cambios no se van a revertir',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Sí, elimina',
-      cancelButtonText: 'No, cancelar',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.prestamoService
-          .eliminarCrud(obj.idSolicitud || 0)
-          .subscribe((x) => {
-            this.refreshTable();
-            Swal.fire('Mensaje', x.mensaje, 'info');
-          });
-      }
-    });
+
+      this.prestamoService.actualizarCrud(obj).subscribe(
+        (response) => {
+          console.log('Estado actualizado con éxito', response);
+          this.refreshTable();
+        },
+        (error) => {
+          console.error('Error al actualizar el estado', error);
+        }
+      );
+    }
   }
 }

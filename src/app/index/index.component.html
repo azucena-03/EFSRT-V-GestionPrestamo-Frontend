@@ -1,5 +1,142 @@
 <app-menu></app-menu>
-<div class="container text-center">
-    <div *ngIf="isLogged; else loggedOut"><h5>Bienvenido {{nombreUsuario}}</h5></div>
-    <ng-template #loggedOut><h5>Para ingresar debe Inicia Sesión</h5></ng-template>
+<div class="text-center tw-font-body">
+    <div *ngIf="isLogged; else loggedOut">
+        <div class="tw-flex tw-flex-col tw-items-center tw-content-center tw-gap-y-8">
+            <h5 class="tw-text-dark-green tw-text-xl tw-font-DMSans">Bienvenido {{nombreUsuario}}</h5>
+            <img src="assets/illustartion.png" width="400" alt="">
+            <p class="tw-text-6xl tw-text-dark-green tw-font-medium tw-w-4/6"> Tu
+                futuro empieza
+                con una
+                decisión inteligente.</p>
+        </div>
+    </div>
+    <ng-template #loggedOut>
+        <div class="tw-container tw-px-24 tw-text-start">
+            <div class="row tw-py-32">
+                <div class="col-md-6">
+                    <h1 class="tw-text-6xl tw-text-dark-green tw-font-bold tw-leading-[4.7rem] tw-mb-4">Prestamos que te
+                        acompañan.</h1>
+                    <p class="tw-text-gray tw-text-lg tw-tracking-wider tw-mb-4">Nuestros servicios de préstamos ofrecen
+                        una
+                        experiencia de
+                        préstamo
+                        simplificada y sin
+                        complicaciones, proporcionándole
+                        los fondos que necesita de manera oportuna para satisfacer sus necesidades financieras.</p>
+                    <button routerLink="/login"
+                        class="tw-p-5 tw-w-32 tw-text-lg tw-text-dark-green tw-text-center tw-border-2 tw-border-dark-green tw-rounded-[3rem] tw-font-DMSans tw-font-medium">Empezar</button>
+                </div>
+                <div class="col-md-6">
+                    <img src="assets/illustartion.png" alt="">
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="tw-bg-[linear-gradient(120deg,_#CEE4E07a_2%,_#D0E4E070_5%,_#DFE3E700_100%)] tw-px-24 tw-py-9 tw-mb-[4.6rem]">
+            <h2 class="tw-text-[2.5rem] tw-text-dark-green tw-font-bold tw-mb-12">Nuestros Servicios</h2>
+            <div class="tw-grid tw-grid-cols-3 tw-gap-x-7">
+                <div
+                    class="tw-flex tw-flex-col tw-items-center tw-text-center tw-gap-4 tw-py-7 tw-px-4 tw-shadow-inner-2 tw-rounded-[2.4rem]">
+                    <img src="assets/solicitudprestamo.png" alt="solicitud prestamo">
+                    <h3 class="tw-text-dark-green tw-text-3xl">Solicita tu Préstamo</h3>
+                    <p class="tw-leading-[1.9rem] tw-text-smoke-gray">Permite a los usuarios solicitar préstamos de
+                        manera rápida, con
+                        un proceso simple.</p>
+                </div>
+                <div
+                    class="tw-flex tw-flex-col tw-items-center tw-text-center tw-gap-4 tw-py-7 tw-px-4 tw-shadow-inner-2 tw-rounded-[2.4rem]">
+                    <img src="assets/gestionprestamo.png" alt="gestion prestamo">
+                    <h3 class="tw-text-dark-green tw-text-3xl">Gestión de Préstamos</h3>
+                    <p class="tw-leading-[1.9rem] tw-text-smoke-gray">Proporciona a los prestatarios y prestamistas una
+                        plataforma para gestionar todos los aspectos del préstamo.</p>
+                </div>
+                <div
+                    class="tw-flex tw-flex-col tw-items-center tw-text-center tw-gap-4 tw-py-7 tw-px-4 tw-shadow-inner-2 tw-rounded-[2.4rem]">
+                    <img src="assets/solicitudprestamo.png" alt="solicitud prestamo">
+                    <h3 class="tw-text-dark-green tw-text-3xl">Aprobación Rápida</h3>
+                    <p class="tw-leading-[1.9rem] tw-text-smoke-gray">Los prestamistas pueden revisar, aprobar o
+                        rechazar solicitudes con rapidez.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="tw-container tw-pb-32">
+            <h2 class="tw-text-[2.5rem] tw-text-dark-green tw-font-bold tw-pb-4">Como trabajamos ?</h2>
+            <p class="text-lg tw-pb-[4.6rem]">Este es un proceso mediante el cual usted puede obtener un préstamo
+                para usted
+                mismo.</p>
+            <div class="tw-flex tw-flex-col tw-gap-y-[5rem]">
+                <div class="tw-flex tw-px-[9rem] tw-gap-x-24">
+                    <img class="tw-mx-[4.3rem]" src="assets/autenticacion.png" alt="Autenticacion">
+                    <div class="tw-text-start tw-self-center tw-relative">
+                        <h3 class="tw-text-[2rem] tw-font-bold tw-text-dark-green tw-pb-[1.8rem]">Autenticación</h3>
+                        <img class="tw-absolute tw-left-[-5%] tw-bottom-3/4" src="assets/01.png" alt="01">
+                        <p>Los usuarios iniciaran sesion su cuenta en Financio. Dependiendo de su rol, acceden a las
+                            funcionalidades específicas como prestatario, prestamista o jefe prestamista</p>
+                    </div>
+                </div>
+                <div class="tw-flex tw-px-[9rem] tw-gap-x-24">
+                    <img class="tw-mx-[4.3rem] tw-order-2" src="assets/solicita.png" alt="solicita">
+                    <div class="tw-text-start tw-self-center tw-relative tw-order-1">
+                        <h3 class="tw-text-[2rem] tw-font-bold tw-text-dark-green tw-pb-[1.8rem]">Solicita</h3>
+                        <img class="tw-absolute tw-left-[-5%] tw-bottom-3/4" src="assets/02.png" alt="01">
+                        <p>El prestatario presenta una solicitud de préstamo con los datos requeridos. Esta pasa a
+                            revisión por parte del prestamista.</p>
+                    </div>
+                </div>
+                <div class="tw-flex tw-px-[9rem] tw-gap-x-24">
+                    <img class="tw-mx-[4.3rem]" src="assets/aprobacion.png" alt="Aprobacion">
+                    <div class="tw-text-start tw-self-center tw-relative">
+                        <h3 class="tw-text-[2rem] tw-font-bold tw-text-dark-green tw-pb-[1.8rem]">Revisión y Aprobación
+                        </h3>
+                        <img class="tw-absolute tw-left-[-5%] tw-bottom-3/4" src="assets/03.png" alt="01">
+                        <p>El prestamista revisa la solicitud y toma la decisión de aprobar o rechazar.</p>
+                    </div>
+                </div>
+                <div class="tw-flex tw-px-[9rem] tw-gap-x-24">
+                    <img class="tw-mx-[4.3rem] tw-order-2" src="assets/gestion.png" alt="Gestion">
+                    <div class="tw-text-start tw-self-center tw-relative tw-order-1">
+                        <h3 class="tw-text-[2rem] tw-font-bold tw-text-dark-green tw-pb-[1.8rem]">Gestióna
+                        </h3>
+                        <img class="tw-absolute tw-left-[-5%] tw-bottom-3/4" src="assets/04.png" alt="01">
+                        <p>Tanto prestatario como prestamista pueden hacer seguimiento de los pagos y estado del
+                            préstamo desde el panel de
+                            control.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tw-bg-[url('assets/bg-footer.png')] tw-px-[9rem] tw-py-[6rem] tw-grid tw-grid-cols-4">
+            <div class="tw-text-start tw-col-end-2">
+                <a class="navbar-brand tw-font-DMSans tw-font-bold tw-text-white tw-text-3xl tw-mb-5"
+                    href="#">Finan<span class="tw-text-brigth-green">cio</span></a>
+                <p class="tw-text-white tw-text-lg tw-mb-4">Nuestra misión es ofrecer soluciones financieras rápidas a
+                    través de una plataforma intuitiva que facilite la gestión
+                    eficiente de préstamos para prestatarios y prestamistas.</p>
+                <ul class="tw-flex tw-gap-x-4">
+                    <li><img src="assets/facebook.png" alt="facebook"></li>
+                    <li><img src="assets/whatsapp.png" alt="whatsapp"></li>
+                    <li><img src="assets/linkedin.png" alt="linkedin"></li>
+                    <li><img src="assets/instagram.png" alt="instagram"></li>
+                </ul>
+            </div>
+            <div class="tw-col-start-4 tw-text-white tw-text-start">
+                <h3 class="tw-font-DMSans tw-uppercase tw-font-bold tw-text-[1.4rem] tw-mb-6">Contactanos</h3>
+                <div class="tw-flex tw-gap-x-4 tw-mb-4">
+                    <img src="assets/telefono.png" alt="telefono">
+                    <span>+51 9999 9999</span>
+                </div>
+                <div class="tw-flex tw-gap-x-4 tw-mb-4">
+                    <img src="assets/correo.png" alt="telefono">
+                    <span>financio&#64;gmail.com</span>
+                </div>
+                <div class="tw-flex tw-gap-x-4">
+                    <img src="assets/telefono.png" alt="telefono">
+                    <span>Lima, 45612 Av. Universitaria</span>
+                </div>
+            </div>
+        </div>
+    </ng-template>
 </div>

@@ -32,45 +32,71 @@ import { ConsultaPrestatarioComponent } from './components/consulta-prestatario/
 import { ConsultaGrupoComponent } from './components/consulta-grupo/consulta-grupo.component';
 import { ConsultaEntidadFinacieraComponent } from './components/consulta-entidad-finaciera/consulta-entidad-finaciera.component';
 import { ConsultaSolicitudPrestamoComponent } from './components/consulta-solicitud-prestamo/consulta-solicitud-prestamo.component';
-
+import { ActualizarSolicitudPrestamoEstado } from './components/crud-solicitud-prestamo-actualizar-estado/crud-solicitud-prestamo.component';
 
 export const routes: Routes = [
-    //PC1 - Registro de Entidades
-    {path:"verRegistroCoordenada", component:AgregarCoordenadaComponent },
-    {path:"verRegistroCuenta", component:AgregarCuentaComponent },
-    {path:"verRegistroDataCatalogo", component:AgregarDataCatalogoComponent },
-    {path:"verRegistroEntidadFinanciera", component:AgregarEntidadFinancieraComponent },
-    {path:"verRegistroGrupo", component:AgregarGrupoComponent },
-    {path:"verRegistroMontoPrestamo", component:AgregarMontoPrestamoComponent },
-    {path:"verRegistroPrestatario", component:AgregarPrestatarioComponent },
-    {path:"verRegistroSolicitudPrestamo", component:AgregarSolicitudPrestamoComponent },
-    {path:"verRegistroEjemplo", component:AgregarEjemploComponent },
-  
-     //PC2 - CRUD de Entidades
-    {path:"verCrudCoordenada", component:CrudCoordenadaComponent },
-    {path:"verCrudCuenta", component:CrudCuentaComponent },
-    {path:"verCrudDataCatalogo", component:CrudDataCatalogoComponent },
-  { path: "verCrudEntidadFinanciera", component: CrudEntidadFinancieraComponent },
-    {path:"verCrudGrupo", component:CrudGrupoComponent},
-    {path:"verCrudMontoPrestamo", component:CrudMontoPrestamoComponent },
-    {path:"verCrudPrestatario", component:CrudPrestatarioComponent },
-    {path:"verCrudSolicitudPrestamo", component:CrudSolicitudPrestamoComponent },
-    {path: "verCrudEjemplo", component: CrudEjemploComponent },
-    
-    //PC3 - Consulta de Entidades
-    {path:"verConsultaCoordenada", component:ConsultaCoordenadaComponent },
-    {path:"verConsultaCuenta", component:ConsultaCuentaComponent },
-    {path:"verConsultaDataCatalogo", component:ConsultaDataCatalogoComponent },
-    {path:"verConsultaEntidadFinanciera", component: ConsultaEntidadFinacieraComponent},
-    {path:"verConsultaGrupo", component:ConsultaGrupoComponent},
-    {path:"verConsultaMontoPrestamo", component:ConsultaMontoPrestamoComponent },
-    {path:"verConsultaPrestatario", component:ConsultaPrestatarioComponent },
-    {path:"verConsultaSolicitudPrestamo", component: ConsultaSolicitudPrestamoComponent },
-    {path:"verConsultaEjemplo", component: ConsultaEjemploComponent },
+  //PC1 - Registro de Entidades
+  { path: 'verRegistroCoordenada', component: AgregarCoordenadaComponent },
+  { path: 'verRegistroCuenta', component: AgregarCuentaComponent },
+  { path: 'verRegistroDataCatalogo', component: AgregarDataCatalogoComponent },
+  {
+    path: 'verRegistroEntidadFinanciera',
+    component: AgregarEntidadFinancieraComponent,
+  },
+  { path: 'verRegistroGrupo', component: AgregarGrupoComponent },
+  {
+    path: 'verRegistroMontoPrestamo',
+    component: AgregarMontoPrestamoComponent,
+  },
+  { path: 'verRegistroPrestatario', component: AgregarPrestatarioComponent },
+  {
+    path: 'verRegistroSolicitudPrestamo',
+    component: AgregarSolicitudPrestamoComponent,
+  },
+  { path: 'verRegistroEjemplo', component: AgregarEjemploComponent },
 
-  
-    { path: '', component: IndexComponent },
-    { path: 'login', component: LoginComponent },
-    { path: '**', redirectTo: '', pathMatch: 'full' }
-  ];
-  
+  //PC2 - CRUD de Entidades
+  { path: 'verCrudCoordenada', component: CrudCoordenadaComponent },
+  { path: 'verCrudCuenta', component: CrudCuentaComponent },
+  { path: 'verCrudDataCatalogo', component: CrudDataCatalogoComponent },
+  {
+    path: 'verCrudEntidadFinanciera',
+    component: CrudEntidadFinancieraComponent,
+  },
+  { path: 'verCrudGrupo', component: CrudGrupoComponent },
+  { path: 'verCrudMontoPrestamo', component: CrudMontoPrestamoComponent },
+  { path: 'verCrudPrestatario', component: CrudPrestatarioComponent },
+  {
+    path: 'verCrudSolicitudPrestamo',
+    component: CrudSolicitudPrestamoComponent,
+  },
+  { path: 'verCrudEjemplo', component: CrudEjemploComponent },
+  {
+    path: 'verActualizarEstadoSolicitud',
+    component: ActualizarSolicitudPrestamoEstado,
+  },
+
+  //PC3 - Consulta de Entidades
+  { path: 'verConsultaCoordenada', component: ConsultaCoordenadaComponent },
+  { path: 'verConsultaCuenta', component: ConsultaCuentaComponent },
+  { path: 'verConsultaDataCatalogo', component: ConsultaDataCatalogoComponent },
+  {
+    path: 'verConsultaEntidadFinanciera',
+    component: ConsultaEntidadFinacieraComponent,
+  },
+  { path: 'verConsultaGrupo', component: ConsultaGrupoComponent },
+  {
+    path: 'verConsultaMontoPrestamo',
+    component: ConsultaMontoPrestamoComponent,
+  },
+  { path: 'verConsultaPrestatario', component: ConsultaPrestatarioComponent },
+  {
+    path: 'verConsultaSolicitudPrestamo',
+    component: ConsultaSolicitudPrestamoComponent,
+  },
+  { path: 'verConsultaEjemplo', component: ConsultaEjemploComponent },
+
+  { path: '', component: IndexComponent },
+  { path: 'login', component: LoginComponent },
+  { path: '**', redirectTo: '', pathMatch: 'full' },
+];

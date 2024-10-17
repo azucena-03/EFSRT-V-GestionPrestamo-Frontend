@@ -1,2 +1,45 @@
 <app-menu></app-menu>
-<p>agregar-solicitud-prestamo works!</p>
+<div class="tw-px-[9rem] tw-py-10">
+    <div class="row tw-text-xs tw-text-white tw-rounded-lg">
+        <mat-toolbar style="background-color: #1b424c ; border-top-left-radius: .5rem; border-top-right-radius: .5rem;">
+            <span class="tw-text-white tw-font-DMSans tw-tracking-widest">Registra Solicitud</span>
+        </mat-toolbar>
+    </div>
+    <div class="row" style="margin-top: 3%">
+        <mat-form-field class="col-md-4">
+            <mat-label>Capital</mat-label>
+            <input matInput [(ngModel)]="objSolicitud.capital">
+        </mat-form-field>
+        <mat-form-field class="col-md-4">
+            <mat-label>Dias</mat-label>
+            <mat-select [(ngModel)]="objSolicitud.dias!.idDataCatalogo">
+                <mat-option value="-1"> [Seleccione] </mat-option>
+                <mat-option *ngFor="let x of lstDias" [value]="x.idDataCatalogo">
+                    {{x.descripcion}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="col-md-4">
+            <mat-label>Monto A Pagar</mat-label>
+            <input matInput [(ngModel)]="objSolicitud.montoPagar">
+        </mat-form-field>
+    </div>
+    <div class="row tw-mb-3" style="margin-top: 3%">
+        <mat-form-field class="col-md-4">
+            <mat-label>Fecha Inicio Prestamo</mat-label>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="objSolicitud.fechaInicioPrestamo">
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="col-md-4">
+            <mat-label>Fecha Fin Prestamo</mat-label>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="objSolicitud.fechaFinPrestamo">
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </div>
+    <div class="tw-flex tw-justify-center">
+        <button type="submit" (click)="registra()"
+            class="tw-p-5 tw-w-32 tw-text-lg tw-text-dark-green tw-text-center tw-border-2 tw-border-dark-green tw-rounded-[3rem] tw-font-DMSans tw-font-medium hover:tw-bg-dark-green hover:tw-text-white">Registrar</button>
+    </div>
+</div>
