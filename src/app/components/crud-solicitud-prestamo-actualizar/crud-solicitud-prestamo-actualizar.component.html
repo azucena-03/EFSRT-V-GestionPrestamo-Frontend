@@ -1,8 +1,9 @@
 <div class="container">
     <div class="mat-dialog-content" id="idFormModalidad">
         <div class="row">
-            <mat-toolbar color="primary">
-                <span>Actualiza Alumno</span>
+            <mat-toolbar
+                style="background-color: #1b424c ; border-top-left-radius: .5rem; border-top-right-radius: .5rem;">
+                <span class="tw-text-white tw-font-DMSans tw-tracking-widest">Actualiza Solicitud de Prestamo</span>
             </mat-toolbar>
         </div>
         <div class="row" style="margin-top: 3%">
@@ -27,9 +28,9 @@
         <div class="row" style="margin-top: 3%">
             <mat-form-field class="col-md-4">
                 <mat-label>Fecha Inicio Prestamo</mat-label>
-                <input matInput [matDatepicker]="picker" [(ngModel)]="objSolicitud.fechaInicioPrestamo">
-                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
+                <input matInput [matDatepicker]="picker1" [(ngModel)]="objSolicitud.fechaInicioPrestamo">
+                <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
             </mat-form-field>
             <mat-form-field class="col-md-4">
                 <mat-label>Fecha Fin Prestamo</mat-label>
@@ -39,7 +40,9 @@
             </mat-form-field>
         </div>
         <div mat-dialog-actions>
-            <button mat-raised-button type="submit" (click)="actualizar()" color="primary" [mat-dialog-close]="1">
+            <button type="submit" (click)="actualizar()"
+                class="tw-mr-4 tw-w-32 tw-h-12 tw-text-lg tw-text-dark-green tw-text-center tw-border-2 tw-border-dark-green tw-rounded-[3rem] tw-font-DMSans tw-font-medium hover:tw-bg-dark-green hover:tw-text-white"
+                [mat-dialog-close]="1">
                 Actualiza
             </button>
             <button mat-button color="primary">

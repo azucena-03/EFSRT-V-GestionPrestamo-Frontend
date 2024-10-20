@@ -49,28 +49,23 @@ export class ActualizarSolicitudPrestamoEstado {
     console.log('>>> refreshTable [fin]');
   }
 
-  // actualizaEstado(obj: SolicitudPrestamo) {
-  //   obj.estado = obj.estado == 1 ? 0 : 1;
-  //   this.prestamoService.actualizarCrud(obj).subscribe();
-  // }
-
   actualizaEstado(obj: SolicitudPrestamo) {
-    if (obj.estadoSolicitud && obj.estadoSolicitud.idDataCatalogo) {
-      if (obj.estadoSolicitud.idDataCatalogo === 13) {
-        obj.estadoSolicitud.idDataCatalogo = 14;
-      } else if (obj.estadoSolicitud.idDataCatalogo === 14) {
-        obj.estadoSolicitud.idDataCatalogo = 13;
-      }
+    const estadoActualizado = {
+      idSolicitud: obj.idSolicitud, // Solo envía el ID y el estado
+      estadoSolicitud: {
+        idDataCatalogo: obj.estadoSolicitud?.idDataCatalogo === 13 ? 14 : 13, // Alterna entre Aceptado (13) y Rechazado (14)
+      },
+      usuarioActualiza: obj.usuarioActualiza, // Envía el usuario que actualiza
+    };
 
-      this.prestamoService.actualizarCrud(obj).subscribe(
-        (response) => {
-          console.log('Estado actualizado con éxito', response);
-          this.refreshTable();
-        },
-        (error) => {
-          console.error('Error al actualizar el estado', error);
-        }
-      );
-    }
+    this.prestamoService.actualizarCrud(estadoActualizado).subscribe(
+      (response) => {
+        console.log('Estado actualizado con éxito', response);
+        this.refreshTable();
+      },
+      (error) => {
+        console.error('Error al actualizar el estado', error);
+      }
+    );
   }
 }

@@ -33,6 +33,7 @@ import { ConsultaGrupoComponent } from './components/consulta-grupo/consulta-gru
 import { ConsultaEntidadFinacieraComponent } from './components/consulta-entidad-finaciera/consulta-entidad-finaciera.component';
 import { ConsultaSolicitudPrestamoComponent } from './components/consulta-solicitud-prestamo/consulta-solicitud-prestamo.component';
 import { ActualizarSolicitudPrestamoEstado } from './components/crud-solicitud-prestamo-actualizar-estado/crud-solicitud-prestamo.component';
+import { ConsultaPrestamoPorPrestamistaComponent } from './components/consulta-prestamo-prestamista/consulta-solicitud-prestamo.component';
 
 export const routes: Routes = [
   //PC1 - Registro de Entidades
@@ -95,6 +96,10 @@ export const routes: Routes = [
     component: ConsultaSolicitudPrestamoComponent,
   },
   { path: 'verConsultaEjemplo', component: ConsultaEjemploComponent },
+  {
+    path: 'verConsultaPrestamoPorPrestamista',
+    component: ConsultaPrestamoPorPrestamistaComponent,
+  },
 
   { path: '', component: IndexComponent },
   { path: 'login', component: LoginComponent },

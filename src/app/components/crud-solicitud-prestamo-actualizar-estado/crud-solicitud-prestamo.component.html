@@ -8,7 +8,7 @@
     </div>
     <div class="tw-flex tw-justify-center">
         <button type="submit" (click)="refreshTable()"
-            class="tw-p-5 tw-w-32 tw-text-lg tw-text-dark-green tw-text-center tw-border-2 tw-border-dark-green tw-rounded-[3rem] tw-font-DMSans tw-font-medium hover:tw-bg-dark-green hover:tw-text-white">Filtrar</button>
+            class="tw-p-5 tw-w-32 tw-text-lg tw-text-dark-green tw-text-center tw-border-2 tw-border-dark-green tw-rounded-[3rem] tw-font-DMSans tw-font-medium hover:tw-bg-dark-green hover:tw-text-white">Cargar</button>
     </div>
     <div class="row" style="margin-top: 3%">
         <div class="row" style="margin-top: 3%">
@@ -38,7 +38,7 @@
                     <mat-cell *matCellDef="let aux">{{ aux.fechaFinPrestamo}}</mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="estadoSolicitud">
-                    <mat-header-cell mat-header-cell *matHeaderCellDef>estadoSolicitud</mat-header-cell>
+                    <mat-header-cell mat-header-cell *matHeaderCellDef>Estado Solicitud</mat-header-cell>
                     <mat-cell *matCellDef="let aux">{{ aux.estadoSolicitud.descripcion}}</mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="acciones">

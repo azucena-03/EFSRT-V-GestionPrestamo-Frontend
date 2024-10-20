@@ -1,8 +1,8 @@
 <app-menu></app-menu>
-<div class="container">
+<div class="tw-px-[9rem] tw-py-10">
     <div class="row">
-        <mat-toolbar color="primary">
-            <span>Crud Cuenta</span>
+        <mat-toolbar style="background-color: #1b424c ; border-top-left-radius: .5rem; border-top-right-radius: .5rem;">
+            <span class="tw-text-white tw-font-DMSans tw-tracking-widest">Consulta Entidad Financiera</span>
         </mat-toolbar>
     </div>
     <div class="row" style="margin-top: 3%; display: flex; align-items: center; justify-content: space-around;">
@@ -35,8 +35,8 @@
     </div>
 
     <div class="row" style="margin-top: 3%; display: flex; align-items: center; justify-content: center;">
-        <button (click)="consultar()" mat-raised-button type="button" color="primary"
-            style="width: 100px;">Filtrar</button>
+        <button (click)="consultar()" type="button"
+            class="tw-p-5 tw-w-32 tw-text-lg tw-text-dark-green tw-text-center tw-border-2 tw-border-dark-green tw-rounded-[3rem] tw-font-DMSans tw-font-medium hover:tw-bg-dark-green hover:tw-text-white">Filtrar</button>
     </div>
     <div class="row" style="margin-top: 3%">
 
@@ -63,10 +63,10 @@
             </ng-container>
 
 
-         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let aux; columns: displayedColumns"></mat-row>
-       </mat-table>
-       <mat-paginator [pageSizeOptions]="[6,8,10]" showFirstLastButtons></mat-paginator>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let aux; columns: displayedColumns"></mat-row>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[6,8,10]" showFirstLastButtons></mat-paginator>
 
-   </div>
+    </div>
 </div>

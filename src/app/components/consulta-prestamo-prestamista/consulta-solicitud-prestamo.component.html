@@ -1,0 +1,41 @@
+<app-menu></app-menu> 
+<div class="tw-container tw-px-[9rem]">
+    <div class="tw-flex tw-justify-center tw-gap-x-4 tw-mb-4 tw-text-lg">
+        <button (click)="exportpdf()" type="button"
+            class="tw-mr-4 tw-w-32 tw-h-12 tw-text-lg tw-text-bright-red tw-text-center tw-border-2 tw-border-bright-red tw-rounded-[3rem] tw-font-DMSans tw-font-medium hover:tw-bg-bright-red hover:tw-text-white tw-flex tw-justify-center tw-items-center tw-gap-2">
+            <img src="assets/pdf.png" width="20" />
+            Exportar</button>
+        <button (click)="exportexcel()" type="button"
+            class="tw-mr-4 tw-w-32 tw-h-12 tw-text-lg tw-text-light-green tw-text-center tw-border-2 tw-border-light-green tw-rounded-[3rem] tw-font-DMSans tw-font-medium hover:tw-bg-light-green hover:tw-text-white tw-flex tw-justify-center tw-items-center tw-gap-2"><img
+                src="assets/excel.png" width="20" />Exportar</button>
+    </div>
+    <div *ngIf="prestamos.length > 0; else noPrestamos">
+        <table class="tw-w-full tw-text-lg tw-text-left tw-text-gray" id="table-data">
+            <thead class="tw-text-xs tw-text-white tw-uppercase tw-bg-dark-green">
+                <tr class="tw-font-DMSans">
+                    <th class="tw-px-6 py-3 tw-rounded-s-lg tw-tracking-widest">ID Solicitud</th>
+                    <th scope="col" class="tw-px-6 tw-py-3 tw-tracking-widest">Capital</th>
+                    <th scope="col" class="tw-px-6 tw-py-3 tw-tracking-widest">Monto a Pagar</th>
+                    <th scope="col" class="tw-px-6 tw-py-3 tw-tracking-widest">Fecha Inicio</th>
+                    <th scope="col" class="tw-px-6 tw-py-3 tw-tracking-widest">Fecha Fin</th>
+                    <th scope="col" class="tw-px-6 tw-py-3 tw-tracking-widest tw-rounded-e-lg">Estado</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let prestamo of prestamos" class="tw-border-b">
+                    <td scope="row" class="tw-px-6 tw-py-4 tw-font-medium tw-text-gray-900 tw-whitespace-nowrap">{{
+                        prestamo.idSolicitud }}</td>
+                    <td class="tw-px-6 tw-py-4">{{ prestamo.capital }}</td>
+                    <td class="tw-px-6 tw-py-4">{{ prestamo.montoPagar }}</td>
+                    <td class="tw-px-6 tw-py-4">{{ prestamo.fechaInicioPrestamo | date: 'yyyy-MM-dd' }}</td>
+                    <td class="tw-px-6 tw-py-4">{{ prestamo.fechaFinPrestamo | date: 'yyyy-MM-dd' }}</td>
+                    <td class="tw-px-6 tw-py-4">{{ prestamo.estadoSolicitud?.descripcion }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <ng-template #noPrestamos>
+        <p>No hay préstamos para este prestamista.</p>
+    </ng-template>
+</div>

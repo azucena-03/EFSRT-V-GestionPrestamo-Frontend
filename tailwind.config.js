@@ -4,9 +4,14 @@ module.exports = {
   content: ["./src/**/*.{html,ts}"],
   theme: {
     extend: {
+      container: {
+        center: true,
+      },
       colors: {
         "dark-green": "#1B424C",
         "brigth-green": "#39C260",
+        "light-green": "#28a745",
+        "bright-red": "#DF0012",
         gray: "#424545",
         white: "#FFFFFF",
         "smoke-gray": "#6F6969",

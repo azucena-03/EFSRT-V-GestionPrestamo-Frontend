@@ -2,8 +2,9 @@
 
     <form [formGroup]="formRegistrar">
         <div class="row">
-            <mat-toolbar color="primary">
-                <span>Registrar Entidad Financiera</span>
+            <mat-toolbar
+                style="background-color: #1b424c ; border-top-left-radius: .5rem; border-top-right-radius: .5rem;">
+                <span class="tw-text-white tw-font-DMSans tw-tracking-widest">Registrar Entidad Financiera</span>
             </mat-toolbar>
         </div>
         <div class="row" style="margin-top: 3%">
@@ -23,7 +24,7 @@
                 </mat-hint>
             </mat-form-field>
 
-            <mat-form-field class="col-md-4" >
+            <mat-form-field class="col-md-4">
                 <mat-label>Gerente</mat-label>
                 <input matInput [(ngModel)]="entidadFinanciera.gerente" formControlName="validaGerente">
                 <mat-hint style="color: red;" *ngIf="formRegistrar.controls.validaDescripcion.touched">
@@ -36,7 +37,7 @@
                 </mat-hint>
             </mat-form-field>
 
-            <mat-form-field class="col-md-4">
+            <mat-form-field class="col-md-3">
                 <mat-label>Tipo Entidad</mat-label>
                 <mat-select [(ngModel)]="entidadFinanciera.tipoEntidad!.idDataCatalogo"
                     formControlName="validaTipoEntidad">
@@ -54,7 +55,6 @@
         </div>
 
         <div class="row" style="margin-top: 3%">
-
             <mat-form-field class="col-md-4">
                 <mat-label>Departamento</mat-label>
                 <mat-select [(ngModel)]="entidadFinanciera.ubigeo!.departamento" (selectionChange)="listaProvincia()"
@@ -87,7 +87,7 @@
                 </mat-hint>
             </mat-form-field>
 
-            <mat-form-field class="col-md-4">
+            <mat-form-field class="col-md-3">
                 <mat-label>Distrito</mat-label>
                 <mat-select [(ngModel)]="entidadFinanciera.ubigeo!.idUbigeo" formControlName="validaDistrito">
                     <mat-option value="-1"> [Seleccione] </mat-option>
@@ -104,15 +104,12 @@
         </div>
 
         <div class="row" style="margin-top: 3%; margin-left: auto; margin-right: auto; max-width: fit-content;">
-            <button mat-raised-button type="submit" color="primary" [disabled]="formRegistrar.invalid"
-                (click)="registra()">Registra</button>
+            <button type="submit"
+                class="tw-mr-4 tw-w-32 tw-h-12 tw-text-lg tw-text-dark-green tw-text-center tw-border-2 tw-border-dark-green tw-rounded-[3rem] tw-font-DMSans tw-font-medium hover:tw-bg-dark-green hover:tw-text-white"
+                [disabled]="formRegistrar.invalid" (click)="registra()">Registra</button>
 
-                <button mat-button 
-                type="submit" 
-                (click)="salir()"
-                [mat-dialog-close]="2"    
-                >Salir
-               </button>        
+            <button mat-button type="submit" (click)="salir()" [mat-dialog-close]="2">Salir
+            </button>
         </div>
     </form>
 </div>

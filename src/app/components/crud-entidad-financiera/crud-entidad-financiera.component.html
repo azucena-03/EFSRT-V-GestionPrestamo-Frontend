@@ -1,18 +1,20 @@
 <app-menu></app-menu>
-<div class="container">
+<div class="tw-px-[9rem] tw-py-10">
     <div class="row">
-        <mat-toolbar color="primary">
-            <span>Crud Entidad Financiera</span>
+        <mat-toolbar style="background-color: #1b424c ; border-top-left-radius: .5rem; border-top-right-radius: .5rem;">
+            <span class="tw-text-white tw-font-DMSans tw-tracking-widest">Crud Entidad Financiera</span>
         </mat-toolbar>
     </div>
     <div class="row" style="margin-top: 3%">
-        <mat-form-field class="col-md-4">
+        <mat-form-field class="col-md-6">
             <mat-label>Descripción de entidad financiera</mat-label>
-            <input matInput [(ngModel)]="filtro" >
+            <input matInput [(ngModel)]="filtro">
         </mat-form-field>
-    
-        <button (click)="refreshTable()" mat-raised-button type="button" color="primary" style="width: 150px;">Filtrar</button>
-        <button (click)="openDialogRegistrar()" mat-raised-button type="button" color="primary" style="width: 150px;">Registrar</button>
+
+        <button (click)="refreshTable()" type="button"
+            class="tw-mr-4 tw-w-32 tw-h-12 tw-text-lg tw-text-dark-green tw-text-center tw-border-2 tw-border-dark-green tw-rounded-[3rem] tw-font-DMSans tw-font-medium hover:tw-bg-dark-green hover:tw-text-white">Filtrar</button>
+        <button (click)="openDialogRegistrar()" type="button"
+            class="tw-mr-4 tw-w-32 tw-h-12 tw-text-lg tw-text-dark-green tw-text-center tw-border-2 tw-border-dark-green tw-rounded-[3rem] tw-font-DMSans tw-font-medium hover:tw-bg-dark-green hover:tw-text-white">Registrar</button>
     </div>
     <div class="row" style="margin-top: 3%">
 
@@ -35,7 +37,8 @@
             </ng-container>
             <ng-container matColumnDef="ubigeo">
                 <mat-header-cell mat-header-cell *matHeaderCellDef>Ubigeo</mat-header-cell>
-                <mat-cell *matCellDef="let aux">{{ aux.ubigeo.departamento }} - {{ aux.ubigeo.provincia }} - {{ aux.ubigeo.distrito }}</mat-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.ubigeo.departamento }} - {{ aux.ubigeo.provincia }} - {{
+                    aux.ubigeo.distrito }}</mat-cell>
             </ng-container>
             <ng-container matColumnDef="estado">
                 <mat-header-cell mat-header-cell *matHeaderCellDef>Estado</mat-header-cell>
@@ -46,27 +49,26 @@
                 <mat-cell *matCellDef="let aux; let i=index;">
 
                     <div class="custom-control custom-switch">
-                        <input type="checkbox" class="custom-control-input" id="idEstado_{{ aux.idEntidadFinanciera}}" name="estado"
-                            [checked]="aux.estado==1?true:false"
-                            (change)="updateEstado(aux)" />
+                        <input type="checkbox" class="custom-control-input" id="idEstado_{{ aux.idEntidadFinanciera}}"
+                            name="estado" [checked]="aux.estado==1?true:false" (change)="updateEstado(aux)" />
                         <label class="custom-control-label" for="idEstado_{{ aux.idEntidadFinanciera}}"></label>
                     </div>
-                    
-                    <button mat-icon-button color="accent" (click)="openDialogActualizar(aux)" >
+
+                    <button mat-icon-button color="accent" (click)="openDialogActualizar(aux)">
                         <mat-icon aria-label="Edit">edit</mat-icon>
                     </button>
-                    
-                    <button mat-icon-button color="accent" (click)="delete(aux)" >
+
+                    <button mat-icon-button color="accent" (click)="delete(aux)">
                         <mat-icon aria-label="Delete">delete</mat-icon>
                     </button>
 
                 </mat-cell>
             </ng-container>
-         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let aux; columns: displayedColumns"></mat-row>
-       </mat-table>
-       <mat-paginator [pageSizeOptions]="[6,8,10]" showFirstLastButtons></mat-paginator>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let aux; columns: displayedColumns"></mat-row>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[6,8,10]" showFirstLastButtons></mat-paginator>
 
-   </div>
-        
+    </div>
+
 </div>

@@ -40,4 +40,12 @@ export class PrestamoService {
       params,
     });
   }
+
+  obtenerPrestamosPorPrestamista(
+    idPrestamista: number
+  ): Observable<SolicitudPrestamo[]> {
+    return this.http.get<SolicitudPrestamo[]>(
+      baseUrlSolicitud + '/prestamosPorPrestamista/' + idPrestamista
+    );
+  }
 }
